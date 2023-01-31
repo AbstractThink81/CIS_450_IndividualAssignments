@@ -12,7 +12,7 @@ public class Blue : Variety
 {
 	public override int pointValue()
 	{
-		return 100;
+		return 400;
 	}
 	public override Material GetMaterial()
 	{

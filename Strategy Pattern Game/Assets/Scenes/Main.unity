@@ -771,10 +771,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -792,8 +792,8 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_Camera: {fileID: 963194227}
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -1943,13 +1943,13 @@ MonoBehaviour:
     and when a box that is the same color as the accumulator reaches it, it counts
     towards your score:
 
-    Blue = 100
+    Red = 100
 
-    Green = 200
+    Yellow = 200
 
-    Yellow = 300
+    Green = 300
 
-    Red
+    Blue
     = 400
 
     Camo = 2000
@@ -4320,14 +4320,14 @@ MonoBehaviour:
 
     order of the point values:
 
-    Blue
+    Red
     = 100
 
-    Green = 200
+    Yellow = 200
 
-    Yellow = 300
+    Green = 300
 
-    Red = 400
+    Blue = 400
 
     Camo = 2000
 
