@@ -21,3 +21,4 @@ MonoBehaviour:
   - Play again
   correctAnswerIndex: 4
   seriousQuesion: 0
+  finalQuestion: 1
