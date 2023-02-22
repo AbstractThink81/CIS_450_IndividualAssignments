@@ -13,13 +13,20 @@ public class QuizManager : MonoBehaviour, ISubject
 	private List<IObserver> observers = new();
 	[SerializeField] private List<QuizQuestion> questions;
 	private int currentQuesitonIndex;
+	private float postQuestionDelay;
 
 	private void Start()
 	{
+		foreach (QuizQuestion question in questions)
+		{
+			question.seenBefore = false;
+		}
+		postQuestionDelay = 1;
 		currentQuesitonIndex = 1;
 		RegisterObserver(GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>());
 		RegisterObserver(GameObject.FindGameObjectWithTag("AnimationManager").GetComponent<AnimationManager>());
 		NotifyNextQuestion(questions[currentQuesitonIndex]);
+		
 	}
 	public void NotifyCorrectAnswer()
 	{
@@ -55,11 +62,20 @@ public class QuizManager : MonoBehaviour, ISubject
 
 	public void PickedOption(int optionIndex)
 	{
+		if (questions[currentQuesitonIndex].seenBefore)
+		{
+			postQuestionDelay = 0.5f;
+		}
+		else
+		{
+			postQuestionDelay = 1;
+		}
+		questions[currentQuesitonIndex].seenBefore = true;
 		if (optionIndex == questions[currentQuesitonIndex].correctAnswerIndex)
 		{
 			currentQuesitonIndex++;
 			NotifyCorrectAnswer();
-			StartCoroutine(WaitThenNotify(1f));
+			StartCoroutine(WaitThenNotify(1f * postQuestionDelay));
 		}
 		else
 		{
@@ -73,7 +89,7 @@ public class QuizManager : MonoBehaviour, ISubject
 				currentQuesitonIndex = 1;
 				NotifyCorrectAnswer();
 			}
-			StartCoroutine(WaitThenNotify(1f));
+			StartCoroutine(WaitThenNotify(1f * postQuestionDelay));
 		}
 	}
 	private IEnumerator WaitThenNotify(float seconds)

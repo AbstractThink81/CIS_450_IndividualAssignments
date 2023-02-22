@@ -18,4 +18,5 @@ public class QuizQuestion : ScriptableObject
     public int correctAnswerIndex;
     public bool seriousQuesion;
     public bool finalQuestion;
+    public bool seenBefore;
 }

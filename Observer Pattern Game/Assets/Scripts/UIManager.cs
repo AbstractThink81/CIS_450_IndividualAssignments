@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour, IObserver
 	[SerializeField] private TextMeshProUGUI questionText;
 	[SerializeField] private TextMeshProUGUI questionNumberText;
 	private bool finalQuestion;
+	private int textSpeed;
 
 	public void UpdateData(QuizQuestion question)
 	{
@@ -31,28 +32,51 @@ public class UIManager : MonoBehaviour, IObserver
         quizManager = GameObject.FindGameObjectWithTag("QuizManager").GetComponent<QuizManager>();
 		ResetUI();
 		finalQuestion = false;
+		textSpeed = 1;
 	}
-
-    public void OnButtonClick(int buttonIndex)
+	public void OnButtonClick(int buttonIndex)
 	{
 		quizManager.PickedOption(buttonIndex);
 	}
 	private IEnumerator SequentiallyUpdateData(QuizQuestion question)
 	{
+		if (question.seenBefore)
+		{
+			textSpeed = 0;
+		}
+		else
+		{
+			textSpeed = 1;
+		}
 		questionText.text = "";
 		questionNumberText.text = "QUESTION " + question.questionNumber;
-		foreach (char c in question.question)
+		if (textSpeed == 1)
 		{
-			questionText.text += c;
-			yield return new WaitForSeconds(0.02f);
+			foreach (char c in question.question)
+			{
+				questionText.text += c;
+				yield return new WaitForSeconds(0.02f);
+			}
 		}
-		yield return new WaitForSeconds(0.5f);
+		else
+		{
+			questionText.text += question.question;
+		}
+		
+		yield return new WaitForSeconds(0.5f * textSpeed);
 		for (int i = 0; i < 4; i++)
 		{
-			foreach (char c in question.answers[i])
+			if (textSpeed == 1)
 			{
-				buttons[i].text += c;
-				yield return new WaitForSeconds(0.01f);
+				foreach (char c in question.answers[i])
+				{
+					buttons[i].text += c;
+					yield return new WaitForSeconds(0.01f);
+				}
+			}
+			else
+			{
+				buttons[i].text += question.answers[i];
 			}
 		}
 		yield return new WaitForSeconds(0.2f);
