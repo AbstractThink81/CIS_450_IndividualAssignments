@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class BossBehaviour : MonoBehaviour
 {
-	private Attack[] attacks = new Attack[2];
+	private Attack[] attacks = new Attack[3];
 	private int attackPhase;
 	public int canShoot;
 	AudioSource audioSource;
@@ -21,6 +21,7 @@ public class BossBehaviour : MonoBehaviour
 		attackPhase = 0;
 		attacks[0] = gameObject.AddComponent<BossAttack0>();
 		attacks[1] = gameObject.AddComponent<BossAttack1>();
+		attacks[2] = gameObject.AddComponent<BossAttack2>();
 		StartCoroutine(BossSequence());
 		canShoot = 0;
 		audioSource = gameObject.AddComponent<AudioSource>();
@@ -75,6 +76,11 @@ public class BossBehaviour : MonoBehaviour
 		yield return new WaitForSeconds(2f);
 		GameManager.StartMusic();
 		while (attackPhase == 0)
+		{
+			attacks[2].StartAttack(transform.position);
+			yield return new WaitForSeconds(0.5f);
+		}
+		while (attackPhase == 1)
 		{
 			transform.position = (new Vector2(Random.Range(-5, 2), Random.Range(1.5f, 3)));
 			yield return new WaitForSeconds(0.5f);

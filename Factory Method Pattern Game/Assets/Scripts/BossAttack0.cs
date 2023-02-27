@@ -17,21 +17,21 @@ public class BossAttack0 : Attack
 	}
 	public override IEnumerator SpawnBullets(Vector2 userPosition, bool focus)
 	{
-		NewBullet(2, userPosition, Quaternion.Euler(180, 0, -70), 5);
+		NewBullet(BulletTypes.Club, userPosition, Quaternion.Euler(180, 0, -70), 5, BulletBehaviours.None);
 		yield return new WaitForFixedUpdate();
-		NewBullet(2, userPosition, Quaternion.Euler(180, 0, -50), 5);
+		NewBullet(BulletTypes.Club, userPosition, Quaternion.Euler(180, 0, -50), 5, BulletBehaviours.None);
 		yield return new WaitForFixedUpdate();
-		NewBullet(2, userPosition, Quaternion.Euler(180, 0, -30), 5);
+		NewBullet(BulletTypes.Club, userPosition, Quaternion.Euler(180, 0, -30), 5, BulletBehaviours.None);
 		yield return new WaitForFixedUpdate();
-		NewBullet(2, userPosition, Quaternion.Euler(180, 0, -10), 5);
+		NewBullet(BulletTypes.Club, userPosition, Quaternion.Euler(180, 0, -10), 5, BulletBehaviours.None);
 		yield return new WaitForFixedUpdate();
-		NewBullet(2, userPosition, Quaternion.Euler(180, 0, 10), 5);
+		NewBullet(BulletTypes.Club, userPosition, Quaternion.Euler(180, 0, 10), 5, BulletBehaviours.None);
 		yield return new WaitForFixedUpdate();
-		NewBullet(2, userPosition, Quaternion.Euler(180, 0, 30), 5);
+		NewBullet(BulletTypes.Club, userPosition, Quaternion.Euler(180, 0, 30), 5, BulletBehaviours.None);
 		yield return new WaitForFixedUpdate();
-		NewBullet(2, userPosition, Quaternion.Euler(180, 0, 50), 5);
+		NewBullet(BulletTypes.Club, userPosition, Quaternion.Euler(180, 0, 50), 5, BulletBehaviours.None);
 		yield return new WaitForFixedUpdate();
-		NewBullet(2, userPosition, Quaternion.Euler(180, 0, 70), 5);
+		NewBullet(BulletTypes.Club, userPosition, Quaternion.Euler(180, 0, 70), 5, BulletBehaviours.None);
 		yield return new WaitForFixedUpdate();
 		audioSource.PlayOneShot(audioClip);
 		yield return new WaitForEndOfFrame();

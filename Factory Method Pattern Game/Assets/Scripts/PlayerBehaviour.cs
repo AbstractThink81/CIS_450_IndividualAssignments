@@ -61,17 +61,19 @@ public class PlayerBehaviour : MonoBehaviour
 
 
 		//attack
-		if (Input.GetKey(KeyCode.Z) && canAttack > 6)
+		if (Input.GetKey(KeyCode.Z) && canAttack > 4)
 		{
 			if (speed == baseSpeed)
 			{
 				attack.StartAttack(transform.position, false);
+				canAttack = -2;
 			}
 			else
 			{
 				attack.StartAttack(transform.position, true);
+				canAttack = 0;
 			}
-			canAttack = 0;
+			
 		}
 	}
 	public void DeathAnimation(int lives)

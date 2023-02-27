@@ -8,16 +8,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossAttack1 : Attack
+public class BossAttack3 : Attack
 {
 	private void Start()
 	{
-		audioClip = (AudioClip)Resources.Load("Sounds/ATTACK4");
+		audioClip = (AudioClip)Resources.Load("Sounds/ATTACK5");
 		audioSource.volume = 0.3f;
 	}
 	public override IEnumerator SpawnBullets(Vector2 userPosition, bool focus)
 	{
-		NewBullet(0, userPosition, Quaternion.Euler(180, 0, 0), 8);
+		NewBullet(BulletTypes.Clump, new Vector2(Random.Range(-6, 3), 4.5f), Quaternion.identity, 0, BulletBehaviours.Directed);
 		audioSource.PlayOneShot(audioClip);
 		yield return new WaitForEndOfFrame();
 	}

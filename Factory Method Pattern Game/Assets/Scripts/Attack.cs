@@ -10,6 +10,21 @@ using UnityEngine;
 
 public abstract class Attack : MonoBehaviour
 {
+	public enum BulletBehaviours
+	{
+		None,
+		Seeking,
+		Directed
+	};
+	public enum BulletTypes
+	{
+		Ball,
+		Spade,
+		Club,
+		Clump,
+		Heart,
+		Diamond
+	};
 	protected AudioSource audioSource;
 	protected AudioClip audioClip;
 	private GameObject[] bulletPrefabs = new GameObject[6];
@@ -35,13 +50,29 @@ public abstract class Attack : MonoBehaviour
 	}
 	public abstract IEnumerator SpawnBullets(Vector2 userPosition, bool focus);
 
-	public void NewBullet(int bulletPrefabNumber, Vector2 position, Quaternion rotation, int force)
+	public void NewBullet(BulletTypes bulletType, Vector2 position, Quaternion rotation, int force, BulletBehaviours bulletBehaviour)
 	{
-		if (position.x > -6 && position.x < 3)
+		if (position.x >= -6 && position.x <= 3)
 		{
-			GameObject bullet = Instantiate(bulletPrefabs[bulletPrefabNumber], position, rotation);
+			GameObject bullet = Instantiate(bulletPrefabs[(int)bulletType], position, rotation);
 			Vector2 t = bullet.transform.up;
 			bullet.GetComponent<Rigidbody2D>().AddForce(t * force, ForceMode2D.Impulse);
+
+
+			if (bulletBehaviour == BulletBehaviours.Seeking)
+			{
+				bullet.AddComponent<SeekingBullet>();
+				bullet.GetComponent<SeekingBullet>().seekingTarget = GameObject.FindGameObjectWithTag("Boss");
+			}
+			else if (bulletBehaviour == BulletBehaviours.Directed)
+			{
+				bullet.AddComponent<DirectedBullet>();
+				bullet.GetComponent<DirectedBullet>().targetPosition = position;
+			}
+			else
+			{
+				bullet.AddComponent<NonSeekingBullet>();
+			}
 		}
 	}
 }
