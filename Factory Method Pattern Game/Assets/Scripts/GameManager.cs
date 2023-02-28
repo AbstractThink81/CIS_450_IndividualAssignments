@@ -1,7 +1,7 @@
 /*
  * Ian Connors
  * GameManager.cs
- * CIS 450 Assignment 5 - Simple Factory Pattern
+ * CIS 450 Assignment 6 - Factory Method Pattern
  * Manages core aspects of the game such as win and loss condions and UI
  */
 using System.Collections;
@@ -21,8 +21,16 @@ public class GameManager : MonoBehaviour
     private static int playerLives = 4;
     private static Slider bossHealthSlider;
     private static TextMeshProUGUI playerHealthText;
-	// Update is called once per frame
-	private void Start()
+    private static LevelDifficulty difficulty;
+    public enum LevelDifficulty
+	{
+        Easy,
+        Normal,
+        Hard,
+        Lunatic
+	};
+    // Update is called once per frame
+    private void Start()
 	{
         Physics2D.gravity = Vector2.zero;
         audioSource = GetComponent<AudioSource>();
@@ -38,6 +46,15 @@ public class GameManager : MonoBehaviour
         playerHealthText = GameObject.FindGameObjectWithTag("PlayerHealthText").GetComponent<TextMeshProUGUI>();
         playerLives = 4;
     }
+    public static void SetDifficulty(int diff)
+	{
+        difficulty = (LevelDifficulty)diff;
+        Debug.Log("Difficulty is now: " + difficulty.ToString());
+	}
+    public static LevelDifficulty GetDifficulty()
+	{
+        return difficulty;
+	}
 	void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -61,14 +78,13 @@ public class GameManager : MonoBehaviour
         audioSource.Play();
 	}
     public static void PlayerHurt()
-	{
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>().Play();
         Debug.Log("PlayerHurt");
         playerLives--;
-        GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>().Play();
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>().DeathAnimation(playerLives);
-        GameObject.FindGameObjectWithTag("Boss").GetComponent<BossBehaviour>().canShoot = 0;
         switch (playerLives)
-		{
+        {
             case 4:
                 playerHealthText.text = "Player: O O O";
                 break;
@@ -87,7 +103,14 @@ public class GameManager : MonoBehaviour
     {
         bossHealth--;
         bossHealthSlider.value = bossHealth;
-
+        if (bossHealth < 2* bossHealthSlider.maxValue / 3 && GameObject.FindGameObjectWithTag("Boss").GetComponent<BossBehaviour>().attackPhase == 0)
+		{
+            GameObject.FindGameObjectWithTag("Boss").GetComponent<BossBehaviour>().NextAttackPhase(1);
+        }
+        if (bossHealth < bossHealthSlider.maxValue / 3 && GameObject.FindGameObjectWithTag("Boss").GetComponent<BossBehaviour>().attackPhase == 1)
+        {
+            GameObject.FindGameObjectWithTag("Boss").GetComponent<BossBehaviour>().NextAttackPhase(2);
+        }
         if (bossHealth == 0)
 		{
             GameObject.FindGameObjectWithTag("Boss").GetComponent<BossBehaviour>().DeathAnimation();
@@ -97,6 +120,7 @@ public class GameManager : MonoBehaviour
 	{
         if (menu == "Win")
 		{
+            winMenu.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "CONGRATULATIONS!\nYou Won The Game On " + difficulty.ToString() + " Mode!";
             winMenu.SetActive(true);
             Time.timeScale = 0;
             paused = true;

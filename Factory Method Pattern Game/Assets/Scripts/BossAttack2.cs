@@ -1,7 +1,7 @@
 /*
  * Ian Connors
- * BossAttack1.cs
- * CIS 450 Assignment 5 - Simple Factory Pattern
+ * BossAttack2.cs
+ * CIS 450 Assignment 6 - Factory Method Pattern
  * One of the attacks for the boss
  */
 using System.Collections;
@@ -15,7 +15,7 @@ public class BossAttack2 : Attack
 		audioClip = (AudioClip)Resources.Load("Sounds/ATTACK5");
 		audioSource.volume = 0.3f;
 	}
-	public override IEnumerator SpawnBullets(Vector2 userPosition, bool focus)
+	public override IEnumerator SpawnBullets(Vector2 userPosition)
 	{
 		NewBullet(BulletTypes.Spade, new Vector2(-6, Random.Range(-4.5f, 4)), Quaternion.Euler(180, 0, -90), 1, BulletBehaviours.None);
 		NewBullet(BulletTypes.Spade, new Vector2(3, Random.Range(-4.5f, 4)), Quaternion.Euler(180, 0, 90), 1, BulletBehaviours.None);

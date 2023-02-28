@@ -1,7 +1,7 @@
 /*
  * Ian Connors
  * PlayerBehaviour.cs
- * CIS 450 Assignment 5 - Simple Factory Pattern
+ * CIS 450 Assignment 6 - Factory Method Pattern
  * Controls the movement of the player
  */
 using System.Collections;
@@ -16,11 +16,13 @@ public class PlayerBehaviour : MonoBehaviour
 	private int canAttack;
 
 	private Attack attack;
+	private Attack focusAttack;
 	public GameObject center;
 	private void Start()
 	{
 		speed = baseSpeed;
 		attack = gameObject.AddComponent<PlayerAttack>();
+		focusAttack = gameObject.AddComponent<PlayerFocusAttack>();
 		canAttack = 0;
 	}
 	private void Update()
@@ -65,12 +67,12 @@ public class PlayerBehaviour : MonoBehaviour
 		{
 			if (speed == baseSpeed)
 			{
-				attack.StartAttack(transform.position, false);
+				attack.StartAttack(transform.position);
 				canAttack = -2;
 			}
 			else
 			{
-				attack.StartAttack(transform.position, true);
+				focusAttack.StartAttack(transform.position);
 				canAttack = 0;
 			}
 			
@@ -78,12 +80,20 @@ public class PlayerBehaviour : MonoBehaviour
 	}
 	public void DeathAnimation(int lives)
 	{
+		StartCoroutine(DeathAnimationCR(lives));
+	}
+	private IEnumerator DeathAnimationCR(int lives)
+	{
+		Time.timeScale = 0.01f;
+		yield return new WaitForSeconds(0.005f);
+		Time.timeScale = 1;
 		if (lives == 0)
 		{
 			GameManager.ShowEndMenu("Lose");
 		}
 		else
 		{
+			GameObject.FindGameObjectWithTag("Boss").GetComponent<BossBehaviour>().canShoot = 0;
 			List<GameObject> bullets = new List<GameObject>();
 			bullets.AddRange(GameObject.FindGameObjectsWithTag("PlayerBullet"));
 			bullets.AddRange(GameObject.FindGameObjectsWithTag("BossBullet"));

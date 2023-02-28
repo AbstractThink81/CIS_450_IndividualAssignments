@@ -1,7 +1,7 @@
 /*
  * Ian Connors
  * Attack.cs
- * CIS 450 Assignment 5 - Simple Factory Pattern
+ * CIS 450 Assignment 6 - Factory Method Pattern
  * Abstract class for all of the attacks in the game
  */
 using System.Collections;
@@ -40,15 +40,11 @@ public abstract class Attack : MonoBehaviour
 
 		audioSource = gameObject.AddComponent<AudioSource>();
 	}
-	public void StartAttack(Vector2 userPosition, bool focus)
-	{
-		StartCoroutine(SpawnBullets(userPosition, focus));
-	}
 	public void StartAttack(Vector2 userPosition)
 	{
-		StartCoroutine(SpawnBullets(userPosition, false));
+		StartCoroutine(SpawnBullets(userPosition));
 	}
-	public abstract IEnumerator SpawnBullets(Vector2 userPosition, bool focus);
+	public abstract IEnumerator SpawnBullets(Vector2 userPosition);
 
 	public void NewBullet(BulletTypes bulletType, Vector2 position, Quaternion rotation, int force, BulletBehaviours bulletBehaviour)
 	{
@@ -67,11 +63,36 @@ public abstract class Attack : MonoBehaviour
 			else if (bulletBehaviour == BulletBehaviours.Directed)
 			{
 				bullet.AddComponent<DirectedBullet>();
-				bullet.GetComponent<DirectedBullet>().targetPosition = position;
 			}
 			else
 			{
-				bullet.AddComponent<NonSeekingBullet>();
+				//bullet.AddComponent<StandardBullet>();
+			}
+		}
+	}
+	public void NewBullet(BulletTypes bulletType, Vector2 position, Quaternion rotation, int force, BulletBehaviours bulletBehaviour, Vector2 position2)
+	{
+		if (position.x >= -6 && position.x <= 3)
+		{
+			GameObject bullet = Instantiate(bulletPrefabs[(int)bulletType], position, rotation);
+			Vector2 t = bullet.transform.up;
+			bullet.GetComponent<Rigidbody2D>().AddForce(t * force, ForceMode2D.Impulse);
+
+
+			if (bulletBehaviour == BulletBehaviours.Seeking)
+			{
+				bullet.AddComponent<SeekingBullet>();
+				bullet.GetComponent<SeekingBullet>().seekingTarget = GameObject.FindGameObjectWithTag("Boss");
+			}
+			else if (bulletBehaviour == BulletBehaviours.Directed)
+			{
+				bullet.AddComponent<DirectedBullet>();
+				bullet.GetComponent<DirectedBullet>().targetPosition = position2;
+				bullet.GetComponent<DirectedBullet>().attack = (BossAttack3)this;
+			}
+			else
+			{
+				bullet.AddComponent<StandardBullet>();
 			}
 		}
 	}

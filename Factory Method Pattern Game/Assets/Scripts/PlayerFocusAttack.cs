@@ -1,8 +1,8 @@
 /*
  * Ian Connors
  * PlayerAttack.cs
- * CIS 450 Assignment 5 - Simple Factory Pattern
- * The attack the player uses
+ * CIS 450 Assignment 6 - Factory Method Pattern
+ * The attack the player uses when focused
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ public class PlayerFocusAttack : Attack
 		audioClip = (AudioClip)Resources.Load("Sounds/ATTACK5");
 		audioSource.volume = 0.2f;
 	}
-	public override IEnumerator SpawnBullets(Vector2 userPosition, bool focus)
+	public override IEnumerator SpawnBullets(Vector2 userPosition)
 	{
 		NewBullet(BulletTypes.Diamond, new Vector2(userPosition.x - .3f, userPosition.y), Quaternion.identity, 7, BulletBehaviours.None);
 		NewBullet(BulletTypes.Diamond, new Vector2(userPosition.x + .3f, userPosition.y), Quaternion.identity, 7, BulletBehaviours.None);
