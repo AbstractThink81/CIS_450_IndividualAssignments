@@ -1,3 +1,9 @@
+/*
+ * Ian Connors
+ * GameManager.cs
+ * CIS 450 - Assigment 10
+ * Sets up tiles and keeps track of the timer and win conditions
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -98,8 +104,6 @@ public class GameManager : MonoBehaviour
 	}
 	private void Start()
 	{
-		//0->4, 1->6, 2->8
-		//16, 36, 64
 		switch (difficultyIndex)
 		{
 			case 0:

@@ -1,3 +1,9 @@
+/*
+ * Ian Connors
+ * Space.cs
+ * CIS 450 - Assigment 10
+ * Contains the logic for clicking on a tile
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

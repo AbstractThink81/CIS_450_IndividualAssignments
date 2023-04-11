@@ -1,3 +1,9 @@
+/*
+ * Ian Connors
+ * MenuManager.cs
+ * CIS 450 - Assigment 10
+ * Manages UI during the gameplay
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

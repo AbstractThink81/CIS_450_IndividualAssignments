@@ -1,3 +1,9 @@
+/*
+ * Ian Connors
+ * Pool.cs
+ * CIS 450 - Assigment 10
+ * Pool data that is used by the ObjectPooler
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

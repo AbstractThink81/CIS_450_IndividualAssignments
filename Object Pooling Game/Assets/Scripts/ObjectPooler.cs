@@ -1,3 +1,9 @@
+/*
+ * Ian Connors
+ * ObjectPooler.cs
+ * CIS 450 - Assigment 10
+ * The abstract implementation of object pooling
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

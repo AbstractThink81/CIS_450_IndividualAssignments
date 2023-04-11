@@ -1,3 +1,9 @@
+/*
+ * Ian Connors
+ * MainMenuManager.cs
+ * CIS 450 - Assigment 10
+ * Manages UI in the Main Menu
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
