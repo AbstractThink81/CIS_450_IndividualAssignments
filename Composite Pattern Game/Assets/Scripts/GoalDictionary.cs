@@ -33,17 +33,17 @@ public class GoalDictionary: MonoBehaviour
     public static int goalCurrentCount;
     public static string[] goals = new string[]
     {
-        "Welcome to The Kanji Pit.\nIn this game, kanji radicals will spawn from the top of the screen and fall to the bottom. You must combine these falling kanji with kanji that have already been placed.\n\tCompatible kanji can be combined to form compound characters, and you can combine these compounds further with other kanji.\n\tIf there are no more compounds that can be made with a kanji, then that kanji will disappear to clear space for new kanji. Press any button to begin the tutorial.",
+        "Welcome to The Kanji Pit.\nIn this game, kanji radicals will spawn from the top of the screen and fall to the bottom. You must combine these falling kanji with kanji that have already been placed.\n\tCompatible kanji can be combined to form compound characters, and you can combine these compounds further with other kanji.\n\tIf there are no more compounds that can be made with a kanji, then that kanji will disappear to clear space for new kanji. Press any key to begin the tutorial.",
         "Make the kanji ï 5 times. ï is a ghost character (—H—ì•¶š yuureimoji). It has made its way into dictionaries, but since sources are not commonly listed, it's unclear where the kanji came from or what its primary usages are. It turns out that many ghost kanji are actually used in place names.",
         "There are 13 common characters (í—pŠ¿š jouyoukanji) which can be made by directly combining the seven radicals that have been included in this game. These characters are ŒÃ, ŒÍ, —Ñ, », ‹x, •Û, ¥, ‘, –¾, ’I, X, ` and ŒÎ. Make each of them at least once. Note: This includes ŒÃ, ŒÍ, —Ñ and », which are not final compounds."
     };
     public static string[] tutorialText = new string[]
     {
-        "Move a falling kanji with A and D. Hold S or space to make the kanji fall faster. Press any button to spawn the first kanji radical.",
-        "Once a kanji has landed, it can be moved left and right with the arrow keys. Kanji will combine if they are moved together and are compatible. The down arrow key can be used to combine kanji downwards. Try moving the kanji.",
-        "Try combining the two “ú kanji to make ¹. Press any button to spawn the next “ú.",
-        "This compound is still compatible with more kanji, so it will not disappear yet. Try combining it with another “ú. Press any button to spawn another “ú.",
-        "Players who are familiar with Japanese might think this would be a final compound, but this game supports some rare kanji. » can actually be combined with the radical –Ø to make the rare kanji ï. Press any button to spawn the –Ø.",
+        "Move a falling kanji with A and D. Hold S or space to make the kanji fall faster. Press any key to spawn the first kanji radical.",
+        "Once a kanji has been placed, it can be moved left and right with the arrow keys. Kanji will combine if they are moved together and are compatible. The down arrow key can be used to combine kanji downwards. Try moving the kanji.",
+        "Two “ú kanji can be combined to make ¹. Press any key to spawn the next “ú, then combine the two kanji.",
+        "This compound is still compatible with more kanji, so it will not disappear yet. Try combining it with another “ú. Press any key to spawn another “ú.",
+        "Players who are familiar with Japanese might think this would be a final compound, but this game supports some rare kanji. » can actually be combined with the radical –Ø to make the rare kanji ï. Press any key to spawn the –Ø.",
         "The kanji has now disappeared and has been added to the Final Compounds list since it can no longer be combined with another kanji. That's it for the tutorial. Press E to return to the main menu."
 
     };

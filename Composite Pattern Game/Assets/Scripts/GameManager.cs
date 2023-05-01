@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public bool isPausePaused;
     public bool tutorialPause;
     private bool canUnpause;
+    private int tutorialKanjiSpawned = 0;
     public MonoBehaviour mutexHolder = null;
 
     //public List<Kanji> kanjiOnScreen;
@@ -276,6 +277,8 @@ public class GameManager : MonoBehaviour
 			}
 			else
 			{
+                GoalDictionary.goalCurrentCount++;
+                GoalDictionary.instance.goalCounterText.GetComponent<TextMeshProUGUI>().text = "1/1";
                 StopAllCoroutines();
                 gameOver = true;
                 if (Input.GetKeyDown(KeyCode.E))
@@ -476,6 +479,12 @@ public class GameManager : MonoBehaviour
         {
             if(GoalDictionary.isTutorial && GoalDictionary.tutorialStep == 1)
                 yield return new WaitUntil(() => GoalDictionary.tutorialStep == 2);
+            //step 2, kanji spawned 1 is ok
+            //step 3, kanji spawned 2 is ok
+            else if (GoalDictionary.isTutorial && GoalDictionary.tutorialStep != 0 && GoalDictionary.tutorialStep != 1 + tutorialKanjiSpawned)
+                yield return new WaitUntil(() => GoalDictionary.tutorialStep == 1 + tutorialKanjiSpawned);
+
+
             if (controlsLocked)
                 yield return new WaitUntil(() => !controlsLocked);
             yield return new WaitForSeconds(1 / fallSpeed);
@@ -495,6 +504,7 @@ public class GameManager : MonoBehaviour
 			{
                 //ForecastUpdate(false, "");
                 radicalToSpawn = (GameObject)Resources.Load("Prefabs/" + forecast.Dequeue() + " radical");
+                tutorialKanjiSpawned++;
 
                 while (forecast.Count < 4)
                 {

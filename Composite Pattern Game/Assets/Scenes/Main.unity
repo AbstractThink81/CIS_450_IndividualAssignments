@@ -2758,10 +2758,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallSpeed: 2
-  gridSpaceSize: 1.2
+  gridSpaceSize: 1.1
   gridXCount: 6
   gridYCount: 8
-  bottomLeftGridSpace: {x: -3, y: -3.85}
+  bottomLeftGridSpace: {x: -2.75, y: -3.45}
   gameOver: 0
   controlsLocked: 0
   isPaused: 0
