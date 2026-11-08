@@ -8,6 +8,7 @@ Unfinished rhythm typing game that combines elements of an online typing test wi
 Each key that the player needs to press is implemented as a command that can be executed, undone, and redone.
 The idea was to use the undo/redo to allow the player to view a replay of their inputs for each song after they play it.
 
+
 ### Composite Pattern Game
 [The Kanji Pit](https://imp-giraffe.itch.io/kanji-mixing)
 A tetris-like game where kanji (Japanese/Chinese characters) fall from the top of the screen, and the player has to direct
@@ -21,12 +22,14 @@ The composite design pattern is a design pattern where individual objects and co
 This game implements the composite design pattern by making every kanji act as a "game piece" that can take up space on the screen, and kanji
 objects can be joined into kanji-compound objects that fit the same "game piece" interface, but are made up of a list of simpler kanji.
 
+
 ### Factory Method Pattern Game
 [Touhou Clone](https://imp-giraffe.itch.io/touhou-clone)
 A bullet-hell game that takes heavy inspiration from the Touhou series.
 
 Each bullet pattern subclasses the `Attack` class, and the `Attack` class has a factory `StartAttack` method that spawns all of the bullets for that
 pattern asyncronously. As the battle progresses, the boss enemy uses different bullet patterns.
+
 
 ### OOP Review
 Small project to review basic OOP concepts.
@@ -35,11 +38,13 @@ There are a few cartoon creatures on the screen, and the user can press differen
 All creatures subclass `Fuzzle`, which means they can `DoATrick`. There are two interfaces `ICanSleep`, and `ICanLaugh`. Some of the creatures
 implement these interfaces to enable them to do the respective actions.
 
+
 ### Object Pooling Game
 [Kanji Tiles](https://imp-giraffe.itch.io/kanji-tiles)
 
 A simple memory tile game. This game uses the object pooling design pattern by keeping a large amount of tiles instantiated at all times and
 simply arranging them into a certain size grid whenever the player starts a new game.
+
 
 ### Observer Pattern Game
 Quiz Game.
@@ -51,6 +56,7 @@ when the `QuizManager` broadcasts that the user has answered a quiz question eit
 Unfinished game intended to teach bitwise math operations.
 
 The idea was to make the game switch between an "type the answer" state, and a "results" state, where each state registers keyboard inputs differently.
+
 
 ### Strategy Pattern Game
 [Box Blitz](https://imp-giraffe.itch.io/box-blitz)
