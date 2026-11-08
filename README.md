@@ -1,5 +1,5 @@
 # Contents
-These are all projects I did for the CIS 450 course in college. The course was designed to teach software design patterns
+These are all projects I did for the CIS 450 course in my third year of college. The course was designed to teach software design patterns
 by having students do rapid game prototypes where each game uses a new design pattern for the core game mechanic.
 
 ## Command Pattern Game
